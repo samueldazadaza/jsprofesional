@@ -94,7 +94,11 @@
       }
 
       async function getFastestTopMovie() {
-        return {};
+        const ids = await getTopMoviesIds()
+        const moviePromises = ids.map(id => getMovie(id))
+
+        const movie = await Promise.race(moviePromises);
+        return movie;
       }
 
       document.getElementById('sequence').onclick = async function() {
