@@ -1,5 +1,3 @@
-import { isConstructorDeclaration } from "typescript";
-
 interface Observer {
     update: (data: any) => void;
 }
@@ -9,8 +7,8 @@ interface Subject {
     unsubscribe: (observer: Observer) => void;
 }
 
-class BitcoinPrice implement Subject {
-    observers: Observers[] = [];
+class BitcoinPrice implements Subject {
+    observers: Observer[] = [];
 
     constructor() {
         const el: HTMLInputElement = document.querySelector('#value');
@@ -19,20 +17,20 @@ class BitcoinPrice implement Subject {
         });
     }
     
-    suscribe (observer: Observer) {
-        this.ResizeObserverSize.push(observer)
+    subscribe (observer: Observer) {
+        this.observers.push(observer)
     }
 
     unsubscribe(observer: Observer) {
-        const index = this.observer.findIndex(obs => {
-            return obs === observer
-        })
+        const index = this.observers.findIndex(obs => {
+            return obs === observer;
+        });
 
-        this.ResizeObserverSize.splice(index, 1);
+        this.observers.splice(index, 1);
     }
 
     notify(data: any) {
-        this.ResizeObserverSize.forEach(observer => observer.update)
+        this.observers.forEach(observer => observer.update)
     }
 }
 
