@@ -78,7 +78,7 @@ const ALL_ADS: Ad[] = [
         'Aprende de forma práctica a implementar React Router para manejar rutas en tus proyectos de frontend como un profesional.',
       url: 'https://platzi.com/cursos/react-router-redux/',
     },
-  ];
+];
 
 class Ads {
     private static instance: Ads;
@@ -97,7 +97,7 @@ class Ads {
     }
 
     private initAds() {
-        this.ads = [...ALL_ADS]
+        this.ads = [...ALL_ADS];
     }
 
     getAd () {
@@ -105,7 +105,7 @@ class Ads {
             this.initAds();
         }
 
-        this.ads.pop();
+        return this.ads.pop();
     }
 }
 
